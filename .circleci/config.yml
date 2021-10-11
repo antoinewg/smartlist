@@ -113,7 +113,7 @@ jobs:
           <<: *set_env
       - restore_cache:
           <<: *yarn_cache
-      - run: npx nx affected:e2e -- ${AFFECTED_ARGS} --configuration production -- --headless
+      - run: npx nx affected:e2e -- ${AFFECTED_ARGS}
       - store_artifacts:
           path: dist/cypress
 
