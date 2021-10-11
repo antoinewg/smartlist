@@ -37,6 +37,9 @@
       "tags": [],
       "implicitDependencies": ["mobile"]
     },
+    "shared-types": {
+      "tags": []
+    },
     "webapp": {
       "tags": []
     },
