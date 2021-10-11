@@ -30,6 +30,13 @@
     "api": {
       "tags": []
     },
+    "mobile": {
+      "tags": []
+    },
+    "mobile-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mobile"]
+    },
     "webapp": {
       "tags": []
     },
