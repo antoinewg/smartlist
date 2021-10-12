@@ -25,7 +25,7 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "~6.6.3",
-    "styled-components": "5.2.1",
+    "styled-components": "^5.3.1",
     "tailwind": "^4.0.0",
     "tailwindcss": "^2.2.16",
     "tslib": "^2.0.0"
