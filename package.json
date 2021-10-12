@@ -13,7 +13,10 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
     "@nrwl/next": "12.10.0",
+    "autoprefixer": "^10.3.7",
+    "axios": "^0.23.0",
     "core-js": "^3.6.5",
+    "material-ui": "^0.20.2",
     "next": "11.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
@@ -23,6 +26,8 @@
     "regenerator-runtime": "0.13.7",
     "rxjs": "~6.6.3",
     "styled-components": "5.2.1",
+    "tailwind": "^4.0.0",
+    "tailwindcss": "^2.2.16",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
