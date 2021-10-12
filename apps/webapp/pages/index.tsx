@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
-import { Todo } from '@smartlist/shared-types';
+interface Todo {
+  id: number;
+  text: string;
+  done: boolean;
+}
 
 const Home = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
