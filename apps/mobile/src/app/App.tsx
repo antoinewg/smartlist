@@ -1,11 +1,12 @@
 import React from 'react';
-import { SafeAreaView, ScrollView, Text } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { AddTodo } from '../features/todos/components/AddTodo';
+import { TodoList } from '../features/todos/pages/TodoList';
 
 const App = () => (
   <SafeAreaView>
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Text testID="heading">Welcome to SmartList!</Text>
-    </ScrollView>
+    <AddTodo />
+    <TodoList />
   </SafeAreaView>
 );
 
