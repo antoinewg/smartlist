@@ -2,6 +2,6 @@
 
 ## v1.0.0 (11/10/2021)
 
-#### merged
+#### enhancement
 
-- [**merged**] Simplify webapp [#1](https://github.com/antoinewg/smartlist/pull/1)
+- [**enhancement**] Simplify webapp [#1](https://github.com/antoinewg/smartlist/pull/1)
