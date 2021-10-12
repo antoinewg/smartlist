@@ -127,64 +127,6 @@
         }
       }
     },
-    "mobile-e2e": {
-      "root": "apps/mobile-e2e",
-      "sourceRoot": "apps/mobile-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "build-ios": {
-          "executor": "@nrwl/detox:build",
-          "options": {
-            "detoxConfiguration": "ios.sim.debug"
-          },
-          "configurations": {
-            "production": {
-              "detoxConfiguration": "ios.sim.release"
-            }
-          }
-        },
-        "test-ios": {
-          "executor": "@nrwl/detox:test",
-          "options": {
-            "detoxConfiguration": "ios.sim.debug"
-          },
-          "configurations": {
-            "production": {
-              "detoxConfiguration": "ios.sim.release"
-            }
-          }
-        },
-        "build-android": {
-          "executor": "@nrwl/detox:build",
-          "options": {
-            "detoxConfiguration": "android.emu.debug"
-          },
-          "configurations": {
-            "production": {
-              "detoxConfiguration": "android.emu.release"
-            }
-          }
-        },
-        "test-android": {
-          "executor": "@nrwl/detox:test",
-          "options": {
-            "detoxConfiguration": "android.emu.debug"
-          },
-          "configurations": {
-            "production": {
-              "detoxConfiguration": "android.emu.release"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/mobile-e2e/**/*.{ts,tsx,js,jsx}"]
-          }
-        }
-      }
-    },
     "shared-types": {
       "root": "libs/shared-types",
       "sourceRoot": "libs/shared-types/src",
@@ -255,32 +197,6 @@
           "outputs": ["{options.outputFile}"],
           "options": {
             "lintFilePatterns": ["apps/webapp/**/*.{ts,tsx,js,jsx}"]
-          }
-        }
-      }
-    },
-    "webapp-e2e": {
-      "root": "apps/webapp-e2e",
-      "sourceRoot": "apps/webapp-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/webapp-e2e/cypress.json",
-            "devServerTarget": "webapp:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "webapp:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "outputs": ["{options.outputFile}"],
-          "options": {
-            "lintFilePatterns": ["apps/webapp-e2e/**/*.{js,ts}"]
           }
         }
       }
