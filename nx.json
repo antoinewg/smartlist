@@ -14,7 +14,7 @@
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"]
+        "cacheableOperations": ["build", "lint", "test"]
       }
     }
   },
@@ -33,19 +33,11 @@
     "mobile": {
       "tags": []
     },
-    "mobile-e2e": {
-      "tags": [],
-      "implicitDependencies": ["mobile"]
-    },
     "shared-types": {
       "tags": []
     },
     "webapp": {
       "tags": []
-    },
-    "webapp-e2e": {
-      "tags": [],
-      "implicitDependencies": ["webapp"]
     }
   }
 }

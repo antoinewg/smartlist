@@ -103,19 +103,6 @@ jobs:
       - restore_cache:
           <<: *yarn_cache
       - run: npx nx affected:test -- ${AFFECTED_ARGS} --parallel
-  e2e:
-    <<: *defaults
-    steps:
-      - checkout
-      - restore_cache:
-          <<: *deploy_cache
-      - run:
-          <<: *set_env
-      - restore_cache:
-          <<: *yarn_cache
-      - run: npx nx affected:e2e -- ${AFFECTED_ARGS}
-      - store_artifacts:
-          path: dist/cypress
 
   deploy:
     <<: *defaults
@@ -153,9 +140,6 @@ workflows:
       - build:
           requires:
             - install
-      - e2e:
-          requires:
-            - install
       - deploy:
           filters:
             branches:
@@ -166,4 +150,3 @@ workflows:
             - lint
             - test
             - build
-            - e2e
