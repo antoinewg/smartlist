@@ -9,6 +9,7 @@
     "react-native": "*",
     "react-native-svg": "*",
     "axios": "*",
-    "styled-components": "*"
+    "styled-components": "*",
+    "@react-native-firebase/firestore": "*"
   }
 }
