@@ -1,7 +1,25 @@
 apply plugin: "com.android.application"
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'
+
+// @react-native-config
+project.ext.envConfigFiles = [
+    apptestingDebug: ".env.testing",
+    apptestingRelease: ".env.testing",
+    stagingDebug: ".env.staging",
+    stagingRelease: ".env.staging",
+    productionDebug: ".env.production",
+    productionRelease: ".env.production",
+    "": ".env.testing", // Default (must be the last in the list so as not to override others)
+]
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 import com.android.build.OutputFile
+
+// Allows to read json (ie: package.json)
+import groovy.json.JsonSlurper
+def packageSlurper = new JsonSlurper()
+def packageJson = packageSlurper.parse file('../../package.json')
 
 /**
  * The react.gradle file registers a task for each build variant (e.g. bundleDebugJsAndAssets
@@ -133,15 +151,17 @@ android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mobile"
+        applicationId "app.smartlists"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode (packageJson.build as Integer)
+        versionName packageJson.version
         
         testBuildType System.getProperty('testBuildType', 'debug')  // This will later be used to control the test apk build type
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
-        
+
+        resValue "string", "app_name", project.env.get("APP_DISPLAY_NAME")
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -185,7 +205,27 @@ android {
             // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+
+            /* Add the firebaseCrashlytics extension (by default,
+            * it's disabled to improve build speeds) and set
+            * nativeSymbolUploadEnabled to true along with a pointer to native libs. */
+            firebaseCrashlytics {
+                nativeSymbolUploadEnabled true
+                unstrippedNativeLibsDir 'build/intermediates/merged_native_libs/release/out/lib'
+            }
         }
+    }
+
+    flavorDimensions "environment"
+    productFlavors {
+        // ProductFlavors names can not start with 'test' https://android.googlesource.com/platform/tools/build/+/21b5320e57ba21f829ecbb4862cf0b9876e11778/gradle/src/main/groovy/com/android/build/gradle/AndroidPlugin.groovy#93
+        apptesting {
+            applicationIdSuffix ".testing"
+        }
+        staging {
+            applicationIdSuffix ".staging"
+        }
+        production {}
     }
 
     // applicationVariants are e.g. debug, release
