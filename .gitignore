@@ -93,5 +93,8 @@ buck-out/
 /
 
 ## Nested node_modules
-
 node_modules/
+
+# Google service
+google-services.json
+GoogleService-Info.plist
