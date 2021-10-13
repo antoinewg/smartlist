@@ -1,6 +1,6 @@
-# Smartlist mobile 📱
+# Smartlists mobile 📱
 
-Mobile application for Smartlist built in React Native (iOS + Android).
+Mobile application for Smartlists built in React Native (iOS + Android).
 
 ### Commands
 

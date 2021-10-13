@@ -9,7 +9,7 @@ export default function Layout({
   return (
     <>
       <Head>
-        <title>SmartList</title>
+        <title>SmartLists</title>
       </Head>
       <main>{children}</main>
       <Footer />

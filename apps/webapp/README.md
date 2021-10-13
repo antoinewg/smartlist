@@ -1,6 +1,6 @@
-# Smartlist web 💻
+# Smartlists web 💻
 
-Web application for Smartlist built in React.
+Web application for Smartlists built in React.
 
 ### Commands
 

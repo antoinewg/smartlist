@@ -1,6 +1,6 @@
-# Smartlist API 📡
+# Smartlists API 📡
 
-API for Smartlist built with Nest.
+API for Smartlists built with Nest.
 
 ### Commands
 

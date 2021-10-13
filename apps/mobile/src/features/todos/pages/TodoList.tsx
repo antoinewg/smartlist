@@ -1,4 +1,4 @@
-import { Todo } from '@smartlist/shared-types';
+import { Todo } from '@smartlists/shared-types';
 import React, { useCallback } from 'react';
 import { FlatList, Text } from 'react-native';
 import { useTodos } from '../hooks/useTodos';

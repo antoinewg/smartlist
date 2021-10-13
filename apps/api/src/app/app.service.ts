@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { Todo } from '@smartlist/shared-types';
+import { Todo } from '@smartlists/shared-types';
 
 @Injectable()
 export class AppService {

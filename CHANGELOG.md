@@ -4,5 +4,5 @@
 
 #### enhancement
 
-- [**enhancement**] Simplify mobile app by removing boilerplate code [#2](https://github.com/antoinewg/smartlist/pull/2)
-- [**enhancement**] Simplify webapp [#1](https://github.com/antoinewg/smartlist/pull/1)
+- [**enhancement**] Simplify mobile app by removing boilerplate code [#2](https://github.com/antoinewg/smartlists/pull/2)
+- [**enhancement**] Simplify webapp [#1](https://github.com/antoinewg/smartlists/pull/1)

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
-import { Todo } from '@smartlist/shared-types';
+import { Todo } from '@smartlists/shared-types';
 import { Platform } from 'react-native';
 
 const BASE_IP = Platform.OS === 'android' ? '10.0.2.2' : '127.0.0.1';
