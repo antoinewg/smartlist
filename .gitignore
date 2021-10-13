@@ -40,6 +40,7 @@ testem.log
 Thumbs.db
 
 # React Native
+*.hprof
 
 ## Xcode
 
@@ -98,3 +99,7 @@ node_modules/
 # Google service
 google-services.json
 GoogleService-Info.plist
+
+# react-native-config codegen
+ios/tmp.xcconfig
+.env

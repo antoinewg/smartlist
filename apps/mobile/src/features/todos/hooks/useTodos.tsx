@@ -1,6 +1,6 @@
+import firestore from '@react-native-firebase/firestore';
 import { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
-import firestore from '@react-native-firebase/firestore';
 
 import { Todo } from '@smartlists/shared-types';
 import { Platform } from 'react-native';
@@ -12,8 +12,15 @@ export const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
   const getTodos = useCallback(async () => {
-    const resp = await axios.get<Todo[]>(BASE_URL);
-    setTodos(resp.data);
+    // const resp = await axios.get<Todo[]>(BASE_URL);
+    try {
+      const todos = await firestore().collection('Todos').get();
+      console.log(todos);
+
+      setTodos([]);
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
 
   useEffect(() => {
