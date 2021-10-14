@@ -1,5 +1,5 @@
 export interface IconInterface {
-  size: number;
+  size?: number;
   color?: string;
   strokeWidth?: number;
 }
