@@ -12,6 +12,4 @@ import perf from '@react-native-firebase/perf';
 import remote from '@react-native-firebase/remote-config';
 import Config from 'react-native-config';
 
-console.log(Config);
-
 AppRegistry.registerComponent('main', () => App);

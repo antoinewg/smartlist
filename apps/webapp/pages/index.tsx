@@ -12,11 +12,6 @@ const Home = () => {
     }
   }, [addTodo]);
 
-  const onToggle = useCallback(
-    async (id: string, done: boolean) => await toggleTodo(id, done),
-    [toggleTodo]
-  );
-
   return (
     <div>
       <input ref={textInputRef} />
@@ -25,7 +20,7 @@ const Home = () => {
         <div key={todo.id} className="flex items-center">
           <input
             type="checkbox"
-            onChange={() => onToggle(todo.id, todo.done)}
+            onChange={() => toggleTodo(todo.id, todo.done)}
             defaultChecked={todo.done}
           />
           <p>{todo.text}</p>
