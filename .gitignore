@@ -102,4 +102,10 @@ GoogleService-Info.plist
 
 # react-native-config codegen
 ios/tmp.xcconfig
-.env
+apps/mobile/.env
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
