@@ -1,31 +1,34 @@
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TextStyle } from 'react-native';
 import styled from 'styled-components/native';
 
-const mapRouteToComponent = (
-  routeName: string
-): { icon: string; size: number; label: string | null } => {
+import { CircledPlus } from '../../assets/icons/TabBar/CircledPlusIcon';
+import { Home } from '../../assets/icons/TabBar/HomeIcon';
+import { Settings } from '../../assets/icons/TabBar/SettingsIcon';
+import { BicolorIconInterface } from '../../assets/types';
+import { ACTIVE_OPACITY, Colors } from '../../libs/ui/theme';
+
+interface ComponentProps {
+  Icon: React.FC<BicolorIconInterface>;
+  label: string | null;
+}
+
+const mapRouteToComponent = (routeName: string): ComponentProps => {
   switch (routeName) {
     case 'Todos':
-      return { icon: '☑︎', size: 28, label: 'Home' };
+      return { Icon: Home, label: 'Home' };
     case 'NewTodo':
-      return { icon: '✚', size: 28, label: 'Todo' };
+      return { Icon: CircledPlus, label: 'Todo' };
     case 'Settings':
-      return { icon: '⚙︎', size: 28, label: 'Settings' };
+      return { Icon: Settings, label: 'Settings' };
   }
 };
 
-export const TabBar = ({
-  state,
-  descriptors,
-  navigation,
-}: BottomTabBarProps) => (
+export const TabBar = ({ state, navigation }: BottomTabBarProps) => (
   <Row>
     {state.routes.map((route, index) => {
-      const { options } = descriptors[route.key];
-      const { icon, size: fontSize, label } = mapRouteToComponent(route.name);
-
+      const { Icon, label } = mapRouteToComponent(route.name);
       const isFocused = state.index === index;
 
       const onPress = () => {
@@ -45,31 +48,31 @@ export const TabBar = ({
         }
       };
 
-      const color = isFocused ? '#673ab7' : undefined;
+      const color = isFocused ? Colors.primary : Colors.foreground;
+      const style = isFocused ? selectedText : unselectedText;
 
       return (
         <TouchableOpacity
+          activeOpacity={ACTIVE_OPACITY}
           key={route.name}
-          accessibilityRole="button"
-          accessibilityState={isFocused ? { selected: true } : {}}
-          accessibilityLabel={options.tabBarAccessibilityLabel}
-          testID={options.tabBarTestID}
           onPress={onPress}
         >
-          <Text style={{ color, fontSize }}>{icon}</Text>
-          <Text style={{ color }}>{label}</Text>
+          <Icon color={color} size={28} strokeWidth={isFocused ? 3 : 2} />
+          <Text style={style as TextStyle}>{label}</Text>
         </TouchableOpacity>
       );
     })}
   </Row>
 );
 
-const TAB_BAR_HEIGHT = 64;
+const TAB_BAR_HEIGHT = 56;
 const Row = styled.View({ flexDirection: 'row' });
+const selectedText = { color: Colors.primary, fontWeight: '500' };
+const unselectedText = { color: Colors.foreground, fontWeight: '400' };
+
 const TouchableOpacity = styled.TouchableOpacity({
   flex: 1,
-  flexDirection: 'column',
   height: TAB_BAR_HEIGHT,
   alignItems: 'center',
-  justifyContent: 'flex-start',
+  justifyContent: 'center',
 });
