@@ -24,15 +24,15 @@ describe('AppService', () => {
   it('should add todo', () => {
     const text = 'Create something amazing';
     service.add(text);
-    expect(service.getData()).toEqual([{ done: false, id: 0, text }]);
+    expect(service.getData()).toEqual([{ done: false, id: '0', text }]);
   });
 
   it('should set todo', () => {
     const text = 'Create something amazing';
     service.add(text);
-    service.setDone(0, true);
-    expect(service.getData()).toEqual([{ done: true, id: 0, text }]);
-    service.setDone(0, false);
-    expect(service.getData()).toEqual([{ done: false, id: 0, text }]);
+    service.setDone('0', true);
+    expect(service.getData()).toEqual([{ done: true, id: '0', text }]);
+    service.setDone('0', false);
+    expect(service.getData()).toEqual([{ done: false, id: '0', text }]);
   });
 });
