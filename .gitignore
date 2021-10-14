@@ -101,7 +101,7 @@ google-services.json
 GoogleService-Info.plist
 
 # react-native-config codegen
-ios/tmp.xcconfig
+apps/mobile/ios/tmp.xcconfig
 apps/mobile/.env
 
 # local env files
