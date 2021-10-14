@@ -2,6 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 
 import Footer from './Footer';
+import { Colors } from '../libs/ui/theme';
+import Header from './Header';
 
 export default function Layout({
   children,
@@ -10,8 +12,10 @@ export default function Layout({
     <>
       <Head>
         <title>SmartLists</title>
+        <meta name="theme-color" content={Colors.primary} />
       </Head>
-      <main>{children}</main>
+      <Header />
+      <main className="m-8">{children}</main>
       <Footer />
     </>
   );

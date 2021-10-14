@@ -34,5 +34,11 @@ export const useTodos = () => {
     []
   );
 
-  return { todos, addTodo, toggleTodo };
+  const deleteTodo = useCallback(
+    async (id: string) =>
+      await firestore().collection('Todos').doc(id).delete(),
+    []
+  );
+
+  return { todos, addTodo, toggleTodo, deleteTodo };
 };

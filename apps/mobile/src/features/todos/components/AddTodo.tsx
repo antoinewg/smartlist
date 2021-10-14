@@ -26,7 +26,7 @@ export const AddTodo = () => {
 const Container = styled.View({ margin: 24 });
 
 const InputContainer = styled.View({
-  border: `solid 1px silver`,
+  border: 'solid 1px silver',
   padding: 12,
   marginBottom: 16,
 });

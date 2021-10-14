@@ -3,32 +3,35 @@ import { useTodos } from '../hooks/useTodos';
 
 const Home = () => {
   const textInputRef = useRef<HTMLInputElement>(null);
-  const { todos, addTodo, toggleTodo } = useTodos();
+  const { todos, addTodo, toggleTodo, deleteTodo } = useTodos();
 
-  const handleAddTodo = useCallback(async () => {
-    if (textInputRef.current && textInputRef.current.value.length) {
-      addTodo(textInputRef.current.value);
-      textInputRef.current.value = '';
-    }
-  }, [addTodo]);
-
-  const onToggle = useCallback(
-    async (id: string, done: boolean) => await toggleTodo(id, done),
-    [toggleTodo]
+  const handleAddTodo = useCallback(
+    (event) => {
+      event.preventDefault();
+      if (textInputRef.current && textInputRef.current.value.length) {
+        console.log('handleAddTodo', textInputRef.current.value);
+        addTodo(textInputRef.current.value);
+        textInputRef.current.value = '';
+      }
+    },
+    [addTodo]
   );
 
   return (
     <div>
-      <input ref={textInputRef} />
-      <button onClick={handleAddTodo}>Add</button>
+      <form onSubmit={handleAddTodo}>
+        <input ref={textInputRef} type="text" placeholder="Add todo..." />
+        <button type="submit">Add</button>
+      </form>
       {todos.map((todo) => (
-        <div key={todo.id} className="flex items-center">
+        <div key={todo.id} className="flex items-center space-x-4">
           <input
             type="checkbox"
-            onChange={() => onToggle(todo.id, todo.done)}
+            onChange={() => toggleTodo(todo.id, todo.done)}
             defaultChecked={todo.done}
           />
           <p>{todo.text}</p>
+          <p onClick={() => deleteTodo(todo.id)}>{'❌'}</p>
         </div>
       ))}
     </div>

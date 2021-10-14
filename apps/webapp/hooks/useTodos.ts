@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 import {
   addDoc,
+  deleteDoc,
   collection,
   doc,
   updateDoc,
@@ -58,5 +59,10 @@ export const useTodos = () => {
     []
   );
 
-  return { todos, addTodo, toggleTodo };
+  const deleteTodo = useCallback(
+    async (id: string) => await deleteDoc(doc(collection(db, 'Todos'), id)),
+    []
+  );
+
+  return { todos, addTodo, toggleTodo, deleteTodo };
 };

@@ -19,6 +19,10 @@
     "@react-native-firebase/messaging": "*",
     "@react-native-firebase/perf": "*",
     "@react-native-firebase/remote-config": "*",
-    "react-native-config": "*"
+    "react-native-config": "*",
+    "@react-navigation/native": "*",
+    "@react-navigation/bottom-tabs": "*",
+    "react-native-screens": "*",
+    "react-native-safe-area-context": "*"
   }
 }
