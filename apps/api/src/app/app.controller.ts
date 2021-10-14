@@ -17,7 +17,7 @@ export class AppController {
   }
 
   @Post('setDone')
-  setDone(@Body() { id, done }: { id: number; done: boolean }) {
+  setDone(@Body() { id, done }: { id: string; done: boolean }) {
     return this.appService.setDone(id, done);
   }
 

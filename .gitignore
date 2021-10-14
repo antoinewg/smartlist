@@ -40,6 +40,7 @@ testem.log
 Thumbs.db
 
 # React Native
+*.hprof
 
 ## Xcode
 
@@ -93,5 +94,18 @@ buck-out/
 /
 
 ## Nested node_modules
-
 node_modules/
+
+# Google service
+google-services.json
+GoogleService-Info.plist
+
+# react-native-config codegen
+apps/mobile/ios/tmp.xcconfig
+apps/mobile/.env
+
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local

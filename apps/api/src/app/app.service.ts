@@ -12,13 +12,13 @@ export class AppService {
 
   add(text: string): void {
     this.todos.push({
-      id: this.todos.length,
+      id: this.todos.length.toString(),
       text,
       done: false,
     });
   }
 
-  setDone(id: number, done: boolean): void {
+  setDone(id: string, done: boolean): void {
     this.todos = this.todos.map((todo) => ({
       ...todo,
       done: todo.id === id ? done : todo.done,

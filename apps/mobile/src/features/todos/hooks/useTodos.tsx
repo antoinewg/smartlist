@@ -1,39 +1,37 @@
+import firestore from '@react-native-firebase/firestore';
 import { useCallback, useEffect, useState } from 'react';
-import axios from 'axios';
 
 import { Todo } from '@smartlists/shared-types';
-import { Platform } from 'react-native';
-
-const BASE_IP = Platform.OS === 'android' ? '10.0.2.2' : '127.0.0.1';
-const BASE_URL = `http://${BASE_IP}:3333/api`;
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
-  const getTodos = useCallback(async () => {
-    const resp = await axios.get<Todo[]>(BASE_URL);
-    setTodos(resp.data);
-  }, []);
+  useEffect(
+    () =>
+      firestore()
+        .collection('Todos')
+        .onSnapshot((querySnapshot) => {
+          const list = [];
+          querySnapshot.forEach((doc) => {
+            const { text, done } = doc.data();
+            list.push({ id: doc.id, text, done });
+          });
 
-  useEffect(() => {
-    getTodos();
-  }, [getTodos]);
+          setTodos(list);
+        }),
+    []
+  );
 
   const addTodo = useCallback(
-    async (text: string) => {
-      await axios.post(BASE_URL, { text });
-      await getTodos();
-    },
-    [getTodos]
+    async (text: string) =>
+      await firestore().collection('Todos').add({ text, done: false }),
+    []
   );
 
   const toggleTodo = useCallback(
-    async (id: number) => {
-      const done = todos.find((todo) => todo.id === id)?.done;
-      await axios.post(`${BASE_URL}/setDone`, { id, done: !done });
-      await getTodos();
-    },
-    [getTodos, todos]
+    async (id: string, done: boolean) =>
+      await firestore().collection('Todos').doc(id).update({ done: !done }),
+    []
   );
 
   return { todos, addTodo, toggleTodo };

@@ -9,7 +9,7 @@ export const TodoList = () => {
 
   const renderItem = useCallback(
     ({ item: todo }: { item: Todo }) => (
-      <TouchableOpacity onPress={() => toggleTodo(todo.id)}>
+      <TouchableOpacity onPress={() => toggleTodo(todo.id, todo.done)}>
         <Text>{todo.done ? '✅' : '⭕️'}</Text>
         <Text> </Text>
         <Text>{todo.text}</Text>

@@ -1,4 +1,4 @@
-package com.mobile;
+package app.smartlists;
 
 import com.facebook.react.ReactActivity;
 

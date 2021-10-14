@@ -1,45 +1,20 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
-
-interface Todo {
-  id: number;
-  text: string;
-  done: boolean;
-}
+import { useCallback, useRef } from 'react';
+import { useTodos } from '../hooks/useTodos';
 
 const Home = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
   const textInputRef = useRef<HTMLInputElement>(null);
-
-  const getTodos = useCallback(async () => {
-    const resp = await axios.get<Todo[]>('http://localhost:3333/api');
-    setTodos(resp.data);
-  }, []);
-
-  useEffect(() => {
-    getTodos();
-  }, [getTodos]);
+  const { todos, addTodo, toggleTodo } = useTodos();
 
   const handleAddTodo = useCallback(async () => {
     if (textInputRef.current && textInputRef.current.value.length) {
-      await axios.post('http://localhost:3333/api', {
-        text: textInputRef.current.value,
-      });
-      getTodos();
+      addTodo(textInputRef.current.value);
       textInputRef.current.value = '';
     }
-  }, [getTodos]);
+  }, [addTodo]);
 
   const onToggle = useCallback(
-    async (id: number) => {
-      const done = todos.find((todo) => todo.id === id)?.done;
-      await axios.post('http://localhost:3333/api/setDone', {
-        id,
-        done: !done,
-      });
-      getTodos();
-    },
-    [getTodos, todos]
+    async (id: string, done: boolean) => await toggleTodo(id, done),
+    [toggleTodo]
   );
 
   return (
@@ -50,7 +25,7 @@ const Home = () => {
         <div key={todo.id} className="flex items-center">
           <input
             type="checkbox"
-            onChange={() => onToggle(todo.id)}
+            onChange={() => onToggle(todo.id, todo.done)}
             defaultChecked={todo.done}
           />
           <p>{todo.text}</p>
