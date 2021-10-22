@@ -2,6 +2,15 @@
   "dataSource": "prs",
   "prefix": "",
   "onlyMilestones": false,
-  "groupBy": "label",
-  "changelogFilename": "CHANGELOG.md"
+  "ignoreTagsWith": ["test", "hotfix", "deploy"],
+  "groupBy": {
+    "🔥 Enhancements:": ["enhancement", "feature"],
+    "🐛 Bug Fixes:": ["bug"],
+    "⚙️ Tech:": ["tech"],
+    "📜 Documentation:": ["documentation"]
+  },
+  "changelogFilename": "CHANGELOG.md",
+  "template": {
+    "issue": "- {{name}} [{{text}}]({{url}})"
+  }
 }
